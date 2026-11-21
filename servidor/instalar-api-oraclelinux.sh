@@ -29,8 +29,16 @@ sed -i 's#^listen.allowed_clients = .*#listen.allowed_clients = 127.0.0.1#' /etc
 echo "==> 2/6 Instalando o Caddy (servidor web com HTTPS automatico)"
 if ! command -v caddy >/dev/null; then
   ARCH=$(uname -m); [[ $ARCH == aarch64 ]] && GOARCH=arm64 || GOARCH=amd64
-  curl -fsSL "https://caddyserver.com/api/download?os=linux&arch=${GOARCH}" -o /usr/bin/caddy
-  chmod 755 /usr/bin/caddy
+  VER=$(curl -fsSL https://api.github.com/repos/caddyserver/caddy/releases/latest | grep -m1 '"tag_name"' | sed -E 's/.*"v([^"]+)".*/\1/')
+  [[ -n "$VER" ]] || VER="2.10.2"
+  echo "Baixando Caddy $VER ($GOARCH) do GitHub"
+  TMPC=$(mktemp -d)
+  curl -fsSL "https://github.com/caddyserver/caddy/releases/download/v${VER}/caddy_${VER}_linux_${GOARCH}.tar.gz" -o "$TMPC/caddy.tgz"
+  tar -xzf "$TMPC/caddy.tgz" -C "$TMPC" caddy
+  install -m 755 "$TMPC/caddy" /usr/bin/caddy
+  rm -rf "$TMPC"
+  restorecon /usr/bin/caddy 2>/dev/null || true
+  caddy version
   id caddy >/dev/null 2>&1 || useradd --system --home /var/lib/caddy --create-home --shell /sbin/nologin caddy
   mkdir -p /etc/caddy
   cat > /etc/systemd/system/caddy.service <<'EOF'
