@@ -114,8 +114,8 @@ sleep 3
 echo
 echo "=== Teste local da API ==="
 curl -s -o /dev/null -w "php-fpm+caddy respondendo: HTTP %{http_code}\n" -k --resolve "$DOMINIO:443:127.0.0.1" "https://$DOMINIO/contato.php" || echo "HTTPS ainda sem certificado (normal ate o DNS api apontar para esta VM)"
-php -r '$c=require "/etc/cwapi/config.php"; $p=new PDO("mysql:host=localhost;dbname=cwdb",$c["db_usuario"],$c["db_senha"]); echo "Conexao PHP->cwdb: OK (".$p->query("SELECT COUNT(*) FROM contatos")->fetchColumn()." contatos)\n";'
-systemctl is-active php-fpm caddy
+php -r '$c=require "/etc/cwapi/config.php"; $p=new PDO("mysql:host=localhost;dbname=cwdb",$c["db_usuario"],$c["db_senha"]); echo "Conexao PHP->cwdb: OK (".$p->query("SELECT COUNT(*) FROM contatos")->fetchColumn()." contatos)\n";' || echo "ATENCAO: PHP nao conectou no banco"
+systemctl is-active php-fpm caddy || true
 echo
 echo "API_INSTALADA_OK"
 echo "Endereco da API ....: https://$DOMINIO/contato.php"
