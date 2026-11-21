@@ -29,7 +29,8 @@ sed -i 's#^listen.allowed_clients = .*#listen.allowed_clients = 127.0.0.1#' /etc
 echo "==> 2/6 Instalando o Caddy (servidor web com HTTPS automatico)"
 if ! command -v caddy >/dev/null; then
   ARCH=$(uname -m); [[ $ARCH == aarch64 ]] && GOARCH=arm64 || GOARCH=amd64
-  VER=$(curl -fsSL https://api.github.com/repos/caddyserver/caddy/releases/latest | grep -m1 '"tag_name"' | sed -E 's/.*"v([^"]+)".*/\1/')
+  JSON=$(curl -fsSL https://api.github.com/repos/caddyserver/caddy/releases/latest || true)
+  VER=$(grep -o -m1 '"tag_name": *"v[^"]*"' <<<"$JSON" | sed -E 's/.*"v([^"]+)"/\1/' || true)
   [[ -n "$VER" ]] || VER="2.10.2"
   echo "Baixando Caddy $VER ($GOARCH) do GitHub"
   TMPC=$(mktemp -d)
