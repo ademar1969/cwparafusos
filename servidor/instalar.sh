@@ -79,6 +79,7 @@ return [
     'db_senha'           => '$DB_SENHA',
     'chave_relatorio'    => '$CHAVE_RELATORIO',
     'sal_ip'             => '$SAL_IP',
+    'cnpj_empresa'       => '39535064000122',
     'origens_permitidas' => [${ORIGENS_PHP%, }],
 ];
 EOF

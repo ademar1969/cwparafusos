@@ -94,10 +94,10 @@ try {
     }
 
     $ins = $pdo->prepare(
-        'INSERT INTO contatos (nome, email, telefone, mensagem, consentimento, origem_pagina, user_agent, ip_hash)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO contatos (CNPJ_EMPRESA, nome, email, telefone, mensagem, consentimento, origem_pagina, user_agent, ip_hash)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
     );
-    $ins->execute([$nome, $email !== '' ? $email : null, $telefone, $mensagem, $consentimento, $origemPagina, $userAgent, $ipHash]);
+    $ins->execute([$config['cnpj_empresa'] ?? '39535064000122', $nome, $email !== '' ? $email : null, $telefone, $mensagem, $consentimento, $origemPagina, $userAgent, $ipHash]);
 
     responder(201, ['ok' => true, 'id' => (int)$pdo->lastInsertId()]);
 } catch (Throwable $e) {

@@ -15,6 +15,7 @@ USE cwdb;
 -- ---------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS contatos (
   id              INT UNSIGNED     NOT NULL AUTO_INCREMENT,
+  CNPJ_EMPRESA    CHAR(14)         NOT NULL DEFAULT '39535064000122', -- empresa dona do site (so numeros)
   criado_em       DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP,
   nome            VARCHAR(120)     NOT NULL,
   email           VARCHAR(160)     NULL,
@@ -28,10 +29,15 @@ CREATE TABLE IF NOT EXISTS contatos (
                                    NOT NULL DEFAULT 'novo',
   PRIMARY KEY (id),
   KEY idx_criado_em (criado_em),
+  KEY idx_cnpj_data (CNPJ_EMPRESA, criado_em),
   KEY idx_email (email),
   KEY idx_status (status),
   KEY idx_ip_hash_data (ip_hash, criado_em)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Bancos criados antes da coluna CNPJ_EMPRESA (MariaDB 10.5+)
+ALTER TABLE contatos ADD COLUMN IF NOT EXISTS CNPJ_EMPRESA CHAR(14) NOT NULL DEFAULT '39535064000122' AFTER id;
+ALTER TABLE contatos ADD INDEX IF NOT EXISTS idx_cnpj_data (CNPJ_EMPRESA, criado_em);
 
 -- ---------------------------------------------------------------------
 --  Views para análise
