@@ -37,8 +37,8 @@
 
   /* hero */
   .hero{background:
-      linear-gradient(115deg,rgba(29,35,41,.96) 45%,rgba(29,35,41,.75)),
-      repeating-linear-gradient(45deg,#2b333b 0 2px,transparent 2px 22px),var(--aco);
+      linear-gradient(115deg,rgba(29,35,41,.97) 40%,rgba(29,35,41,.72)),
+      url('https://images.unsplash.com/photo-1613945831677-383c19ad7721?w=1800&q=70&auto=format&fit=crop') center/cover,var(--aco);
     color:#fff;padding:96px 0 110px;position:relative;overflow:hidden}
   .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
   .tag{display:inline-block;background:rgba(242,140,27,.15);color:var(--laranja);border:1px solid rgba(242,140,27,.4);padding:6px 14px;border-radius:30px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
@@ -113,6 +113,27 @@
   input:focus,textarea:focus{outline:2px solid var(--laranja);border-color:transparent}
   textarea{min-height:120px;resize:vertical}
 
+
+  /* carrossel */
+  .galeria{background:var(--claro)}
+  .carrossel{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.18);background:#111;aspect-ratio:16/8}
+  .trilho{position:absolute;inset:0}
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+  .slide.ativo{opacity:1}
+  .slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6s ease}
+  .slide.ativo img{transform:scale(1)}
+  .leg{position:absolute;left:0;right:0;bottom:0;padding:70px 40px 34px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff}
+  .leg h3{font-size:clamp(1.6rem,3.4vw,2.6rem);text-transform:uppercase;color:#fff}
+  .leg h3::before{content:"";display:inline-block;width:34px;height:4px;background:var(--laranja);vertical-align:middle;margin-right:12px}
+  .leg p{color:#dde2e6;font-size:1.05rem}
+  .seta{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:var(--aco);font-size:1.2rem;cursor:pointer;transition:.2s;z-index:2}
+  .seta:hover{background:var(--laranja);color:#fff}
+  .seta.esq{left:18px}.seta.dir{right:18px}
+  .pontos{position:absolute;right:30px;bottom:24px;display:flex;gap:8px;z-index:2}
+  .pontos button{width:10px;height:10px;border-radius:10px;border:0;background:rgba(255,255,255,.5);cursor:pointer;transition:.3s;padding:0}
+  .pontos button.ativo{width:28px;background:var(--laranja)}
+  @media(max-width:700px){.carrossel{aspect-ratio:4/5}.leg{padding:60px 20px 46px}.pontos{left:0;right:0;justify-content:center;bottom:18px}.seta{width:40px;height:40px;top:40%}}
+
   footer{background:#14181c;color:#9aa4ad;padding:30px 0;font-size:.92rem}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
@@ -145,6 +166,7 @@
       <button class="menu-btn" aria-label="Abrir menu" onclick="document.querySelector('nav ul').classList.toggle('aberto')">☰</button>
       <ul onclick="this.classList.remove('aberto')">
         <li><a href="#inicio">Início</a></li>
+        <li><a href="#galeria">Galeria</a></li>
         <li><a href="#produtos">Produtos</a></li>
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -192,6 +214,64 @@
     <div><strong>Orçamento</strong><small>sem compromisso</small></div>
   </div>
 </div>
+
+
+<section class="galeria" id="galeria">
+  <div class="wrap">
+    <div class="titulo"><small>Galeria</small><h2>Do minúsculo ao grande</h2><p>Parafusos de todos os tamanhos e ferramentas para cada tipo de trabalho.</p></div>
+    <div class="carrossel" id="carrossel">
+      <div class="trilho">
+      <div class="slide ativo">
+        <img src="https://images.unsplash.com/photo-1769971361807-1e3d025c2abb?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1769971361807-1e3d025c2abb?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1769971361807-1e3d025c2abb?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Grande variedade" >
+        <div class="leg"><h3>Grande variedade</h3><p>Parafusos, porcas e arruelas de todos os tipos e medidas</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1775345507804-2b44a1046873?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1775345507804-2b44a1046873?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1775345507804-2b44a1046873?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Do minúsculo…" loading="lazy">
+        <div class="leg"><h3>Do minúsculo…</h3><p>Parafusos de precisão para eletrônica, óculos e pequenos reparos</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1763888450676-f0f7a3987917?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1763888450676-f0f7a3987917?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1763888450676-f0f7a3987917?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="…ao grande" loading="lazy">
+        <div class="leg"><h3>…ao grande</h3><p>Parafusos e porcas estruturais para indústria e construção pesada</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1613945831677-383c19ad7721?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1613945831677-383c19ad7721?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1613945831677-383c19ad7721?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Parafusos em estoque" loading="lazy">
+        <div class="leg"><h3>Parafusos em estoque</h3><p>Aço carbono, inox, zincado e bicromatizado</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1785769587525-d74b0503c2e9?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1785769587525-d74b0503c2e9?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1785769587525-d74b0503c2e9?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Parafusos para madeira" loading="lazy">
+        <div class="leg"><h3>Parafusos para madeira</h3><p>Ideais para marcenaria, móveis e montagem</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1773319309016-29d96530f7d0?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1773319309016-29d96530f7d0?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1773319309016-29d96530f7d0?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="A peça certa na sua mão" loading="lazy">
+        <div class="leg"><h3>A peça certa na sua mão</h3><p>Orientação para escolher medida, material e acabamento</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Ferramentas manuais" loading="lazy">
+        <div class="leg"><h3>Ferramentas manuais</h3><p>Martelos, chaves, alicates, trenas e muito mais</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1426927308491-6380b6a9936f?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1426927308491-6380b6a9936f?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1426927308491-6380b6a9936f?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Tudo para sua oficina" loading="lazy">
+        <div class="leg"><h3>Tudo para sua oficina</h3><p>Ferramentas para profissionais e para o dia a dia</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1770763233593-74dfd0da7bf0?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1770763233593-74dfd0da7bf0?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1770763233593-74dfd0da7bf0?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Ferramentas elétricas" loading="lazy">
+        <div class="leg"><h3>Ferramentas elétricas</h3><p>Furadeiras, parafusadeiras e acessórios</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1760376208640-2ece4c4a0adc?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1760376208640-2ece4c4a0adc?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1760376208640-2ece4c4a0adc?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Brocas e acessórios" loading="lazy">
+        <div class="leg"><h3>Brocas e acessórios</h3><p>Brocas para concreto, madeira e metal</p></div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1785484267196-3f7325819b26?w=1600&q=75&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1785484267196-3f7325819b26?w=800&q=75&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1785484267196-3f7325819b26?w=1600&q=75&auto=format&fit=crop 1600w" sizes="(max-width:900px) 100vw, 1140px" alt="Para obras e reformas" loading="lazy">
+        <div class="leg"><h3>Para obras e reformas</h3><p>Fixadores e ferramentas para construção civil</p></div>
+      </div>
+      </div>
+      <button class="seta esq" aria-label="Anterior">&#10094;</button>
+      <button class="seta dir" aria-label="Próxima">&#10095;</button>
+      <div class="pontos"><button aria-label="Foto 1" class="ativo"></button><button aria-label="Foto 2"></button><button aria-label="Foto 3"></button><button aria-label="Foto 4"></button><button aria-label="Foto 5"></button><button aria-label="Foto 6"></button><button aria-label="Foto 7"></button><button aria-label="Foto 8"></button><button aria-label="Foto 9"></button><button aria-label="Foto 10"></button><button aria-label="Foto 11"></button></div>
+    </div>
+  </div>
+</section>
 
 <section id="produtos">
   <div class="wrap">
@@ -283,7 +363,7 @@
 <footer>
   <div class="wrap">
     <span>© <span id="ano"></span> CW Parafusos. Todos os direitos reservados.</span>
-    <span>CNPJ 39.535.064/0001-22 • Campinas – SP</span>
+    <span>CNPJ 39.535.064/0001-22 • Campinas – SP • Fotos: Unsplash</span>
   </div>
 </footer>
 
@@ -299,6 +379,20 @@
     const t = `Olá, CW Parafusos! Meu nome é ${nome.value} (${fone.value}).\n\n${msg.value}`;
     window.open('https://wa.me/' + ZAP + '?text=' + encodeURIComponent(t), '_blank');
   }
+
+  (function(){
+    const c=document.getElementById('carrossel'),sl=c.querySelectorAll('.slide'),pt=c.querySelectorAll('.pontos button');
+    let i=0,t;
+    function ir(n){sl[i].classList.remove('ativo');pt[i].classList.remove('ativo');i=(n+sl.length)%sl.length;sl[i].classList.add('ativo');pt[i].classList.add('ativo');rein();}
+    function rein(){clearInterval(t);t=setInterval(()=>ir(i+1),5000);}
+    c.querySelector('.esq').onclick=()=>ir(i-1);
+    c.querySelector('.dir').onclick=()=>ir(i+1);
+    pt.forEach((b,n)=>b.onclick=()=>ir(n));
+    c.addEventListener('mouseenter',()=>clearInterval(t));c.addEventListener('mouseleave',rein);
+    let x0=null;c.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+    c.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)ir(i+(dx<0?1:-1));x0=null;});
+    rein();
+  })();
 </script>
 </body>
 </html>
