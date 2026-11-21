@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CW Parafusos | Parafusos e ferramentas em Campinas</title>
+<title>CW Parafusos &amp; Ferramentas | Campinas</title>
 <meta name="description" content="CW Parafusos: parafusos, porcas, arruelas, buchas, chumbadores e ferramentas para indústria, construção e manutenção. Atendimento rápido e preço justo.">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta property="og:image" content="https://ademar1969.github.io/cwparafusos/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --aco:#1d2329; --aco2:#2b333b; --cinza:#5b6670; --claro:#f3f4f5; --linha:#dfe2e5;
-    --laranja:#f28c1b; --laranja2:#d97706; --branco:#fff; --zap:#25d366;
+    --aco:#14142f; --aco2:#24243f; --cinza:#5c5c72; --claro:#f2f2f6; --linha:#dedde6;
+    --laranja:#5b5fd6; --laranja2:#4146b8; --branco:#fff; --zap:#25d366;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -24,8 +27,8 @@
   header{position:sticky;top:0;z-index:50;background:var(--aco);color:#fff;border-bottom:3px solid var(--laranja)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
   .logo{display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed';font-weight:800;font-size:1.6rem;text-transform:uppercase}
-  .logo svg{width:36px;height:36px}
-  .logo span{color:var(--laranja)}
+  .logo img{width:44px;height:44px;border-radius:6px;object-fit:cover}
+  .logo span{color:#b9bcff}
   nav ul{display:flex;gap:28px;list-style:none;font-weight:500}
   nav a:hover{color:var(--laranja)}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:6px;font-weight:600;transition:.2s;border:0;cursor:pointer;font-size:1rem}
@@ -37,17 +40,17 @@
 
   /* hero */
   .hero{background:
-      linear-gradient(115deg,rgba(29,35,41,.97) 40%,rgba(29,35,41,.72)),
+      linear-gradient(115deg,rgba(20,20,47,.95) 38%,rgba(20,20,47,.6)),
       url('https://images.unsplash.com/photo-1613945831677-383c19ad7721?w=1800&q=70&auto=format&fit=crop') center/cover,var(--aco);
     color:#fff;padding:96px 0 110px;position:relative;overflow:hidden}
   .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
-  .tag{display:inline-block;background:rgba(242,140,27,.15);color:var(--laranja);border:1px solid rgba(242,140,27,.4);padding:6px 14px;border-radius:30px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
+  .tag{display:inline-block;background:rgba(140,144,255,.15);color:#b9bcff;border:1px solid rgba(160,164,255,.45);padding:6px 14px;border-radius:30px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
   .hero h1{font-size:clamp(2.6rem,6vw,4.4rem);text-transform:uppercase;font-weight:800}
-  .hero h1 em{font-style:normal;color:var(--laranja)}
+  .hero h1 em{font-style:normal;color:#a9adff}
   .hero p{font-size:1.15rem;color:#cfd5da;margin:20px 0 32px;max-width:540px}
   .hero .acoes{display:flex;gap:14px;flex-wrap:wrap}
   .hero-art{display:flex;justify-content:center}
-  .hero-art svg{width:100%;max-width:340px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+  .hero-logo{width:100%;max-width:380px;border-radius:14px;box-shadow:0 25px 60px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.12)}
 
   /* faixa numeros */
   .faixa{background:var(--laranja);color:#fff}
@@ -62,14 +65,19 @@
   .titulo p{color:var(--cinza)}
 
   /* produtos */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
-  .card{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:28px;transition:.25s;position:relative;overflow:hidden}
-  .card::before{content:"";position:absolute;left:0;top:0;height:4px;width:0;background:var(--laranja);transition:.3s}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:0;transition:.25s;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;top:0;z-index:2;height:4px;width:0;background:var(--laranja);transition:.3s}
   .card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.08)}
   .card:hover::before{width:100%}
   .ico{width:54px;height:54px;border-radius:10px;background:var(--claro);display:grid;place-items:center;margin-bottom:16px}
   .ico svg{width:30px;height:30px;stroke:var(--aco);fill:none;stroke-width:1.8}
-  .card h3{font-size:1.45rem;text-transform:uppercase;margin-bottom:6px}
+  .foto{aspect-ratio:4/3;overflow:hidden;background:var(--aco);position:relative}
+  .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,20,47,.55));}
+  .foto img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .card:hover .foto img{transform:scale(1.07)}
+  .txt{padding:20px 22px 24px}
+  .card h3{font-size:1.35rem;text-transform:uppercase;margin-bottom:6px}
   .card p{color:var(--cinza);font-size:.97rem}
 
   /* sobre */
@@ -82,7 +90,7 @@
   .lista li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--laranja);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700}
   .sobre-box{background:var(--aco);color:#fff;border-radius:12px;padding:40px;position:relative}
   .sobre-box::after{content:"";position:absolute;right:-12px;bottom:-12px;width:100%;height:100%;border:3px solid var(--laranja);border-radius:12px;z-index:-1}
-  .sobre-box h3{font-size:1.8rem;text-transform:uppercase;margin-bottom:20px;color:var(--laranja)}
+  .sobre-box h3{font-size:1.8rem;text-transform:uppercase;margin-bottom:20px;color:#b9bcff}
   .seg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .seg div{background:var(--aco2);padding:16px;border-radius:8px;font-weight:600}
   .seg div small{display:block;color:#aab3bb;font-weight:400;font-size:.85rem}
@@ -91,7 +99,7 @@
   .difs{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
   .dif{text-align:center;padding:10px}
   .dif .ico{margin:0 auto 14px;background:var(--aco)}
-  .dif .ico svg{stroke:var(--laranja)}
+  .dif .ico svg{stroke:#b9bcff}
   .dif h3{text-transform:uppercase;font-size:1.3rem;margin-bottom:6px}
   .dif p{color:var(--cinza);font-size:.95rem}
 
@@ -134,13 +142,14 @@
   .pontos button.ativo{width:28px;background:var(--laranja)}
   @media(max-width:700px){.carrossel{aspect-ratio:4/5}.leg{padding:60px 20px 46px}.pontos{left:0;right:0;justify-content:center;bottom:18px}.seta{width:40px;height:40px;top:40%}}
 
-  footer{background:#14181c;color:#9aa4ad;padding:30px 0;font-size:.92rem}
+  footer{background:#0b0b20;color:#9a9ab3;padding:30px 0;font-size:.92rem}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
   .zap{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:var(--zap);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:60;transition:.2s}
   .zap:hover{transform:scale(1.08)}
   .zap svg{width:32px;height:32px;fill:#fff}
 
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:900px){
     .hero .wrap,.sobre .wrap,.contato .wrap{grid-template-columns:1fr}
     .hero-art{display:none}
@@ -151,7 +160,7 @@
     .menu-btn{display:block}
     .nav .btn-lar{display:none}
   }
-  @media(max-width:520px){.difs,.seg{grid-template-columns:1fr}}
+  @media(max-width:520px){.difs,.seg,.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -159,8 +168,8 @@
 <header>
   <div class="wrap nav">
     <a href="#inicio" class="logo">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="#f28c1b"/><circle cx="20" cy="20" r="7" fill="#1d2329"/></svg>
-      CW <span>Parafusos</span>
+      <img src="logo.jpg" alt="CW Parafusos &amp; Ferramentas">
+      CW <span>Parafusos &amp; Ferramentas</span>
     </a>
     <nav>
       <button class="menu-btn" aria-label="Abrir menu" onclick="document.querySelector('nav ul').classList.toggle('aberto')">☰</button>
@@ -187,22 +196,7 @@
         <a class="btn btn-cont" href="#produtos">Ver produtos</a>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 200 260">
-        <defs>
-          <linearGradient id="m" x1="0" x2="1"><stop offset="0" stop-color="#8a949d"/><stop offset=".45" stop-color="#e9edf0"/><stop offset="1" stop-color="#6c767f"/></linearGradient>
-        </defs>
-        <polygon points="100,10 160,40 160,80 100,110 40,80 40,40" fill="url(#m)" stroke="#4a535b" stroke-width="2"/>
-        <polygon points="100,22 148,46 148,74 100,98 52,74 52,46" fill="none" stroke="#f28c1b" stroke-width="3" opacity=".9"/>
-        <rect x="80" y="104" width="40" height="140" fill="url(#m)" stroke="#4a535b" stroke-width="2"/>
-        <g stroke="#4a535b" stroke-width="3" opacity=".8">
-          <line x1="80" y1="120" x2="120" y2="130"/><line x1="80" y1="136" x2="120" y2="146"/><line x1="80" y1="152" x2="120" y2="162"/>
-          <line x1="80" y1="168" x2="120" y2="178"/><line x1="80" y1="184" x2="120" y2="194"/><line x1="80" y1="200" x2="120" y2="210"/>
-          <line x1="80" y1="216" x2="120" y2="226"/>
-        </g>
-        <polygon points="80,244 120,244 100,258" fill="#6c767f"/>
-      </svg>
-    </div>
+    <div class="hero-art"><img src="logo.jpg" alt="Logo CW Parafusos &amp; Ferramentas" class="hero-logo"></div>
   </div>
 </section>
 
@@ -281,12 +275,14 @@
       <p>Trabalhamos com diversas medidas, materiais e acabamentos: aço carbono, inox, zincado, bicromatizado e galvanizado.</p>
     </div>
     <div class="grid">
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M8 3h8l2 3H6z"/><path d="M10 6v13l2 2 2-2V6"/><path d="M10 9l4 1M10 12l4 1M10 15l4 1"/></svg></div><h3>Parafusos</h3><p>Sextavados, Allen, francês, máquina, autoatarraxantes, para madeira e drywall.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><polygon points="12,3 20,7.5 20,16.5 12,21 4,16.5 4,7.5"/><circle cx="12" cy="12" r="3.5"/></svg></div><h3>Porcas</h3><p>Sextavadas, travantes (parlock), borboleta, cega e rebites com rosca.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Arruelas</h3><p>Lisas, de pressão, dentadas e de vedação em várias espessuras.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6v4l-1 13h-4L9 7z"/><path d="M9 7h6M10 11h4M10 15h4"/></svg></div><h3>Buchas e chumbadores</h3><p>Buchas de nylon, chumbadores CBA, parabolt e químicos para concreto e alvenaria.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 12h12"/><path d="M16 8l4 4-4 4"/><path d="M4 9v6"/></svg></div><h3>Barras roscadas</h3><p>Barras roscadas, prisioneiros e vergalhões em diversas bitolas.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div><h3>Ferramentas</h3><p>Chaves, brocas, bits, discos e acessórios para montagem e manutenção.</p></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1564226591723-659ff3852b2a?w=600&q=70&auto=format&fit=crop" alt="Parafusos" loading="lazy"></div><div class="txt"><h3>Parafusos</h3><p>Sextavados, Allen, francês, máquina, autoatarraxantes, para madeira e drywall.</p></div></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1782210899817-59c437b16b0d?w=600&q=70&auto=format&fit=crop" alt="Porcas" loading="lazy"></div><div class="txt"><h3>Porcas</h3><p>Sextavadas, travantes (parlock), borboleta, cega e rebites com rosca.</p></div></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1769971361558-3e32ddc52388?w=600&q=70&auto=format&fit=crop" alt="Arruelas" loading="lazy"></div><div class="txt"><h3>Arruelas</h3><p>Lisas, de pressão, dentadas e de vedação em várias espessuras.</p></div></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1760376208640-2ece4c4a0adc?w=600&q=70&auto=format&fit=crop" alt="Brocas, buchas e chumbadores" loading="lazy"></div><div class="txt"><h3>Brocas, buchas e chumbadores</h3><p>Brocas para concreto, madeira e metal; buchas de nylon, CBA e parabolt.</p></div></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1786835567998-0273b9af9c3b?w=600&q=70&auto=format&fit=crop" alt="Barras roscadas" loading="lazy"></div><div class="txt"><h3>Barras roscadas</h3><p>Barras roscadas, prisioneiros e vergalhões em diversas bitolas.</p></div></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1503789146722-cf137a3c0fea?w=600&q=70&auto=format&fit=crop" alt="Ferramentas manuais" loading="lazy"></div><div class="txt"><h3>Ferramentas manuais</h3><p>Chaves, alicates, martelos, trenas, serras e jogos de ferramentas.</p></div></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1590635023142-73c3d34f2805?w=600&q=70&auto=format&fit=crop" alt="Furadeiras" loading="lazy"></div><div class="txt"><h3>Furadeiras</h3><p>Furadeiras com e sem fio, de impacto e acessórios para perfuração.</p></div></div>
+      <div class="card"><div class="foto"><img src="https://images.unsplash.com/photo-1776711763505-4105861e0d41?w=600&q=70&auto=format&fit=crop" alt="Parafusadeiras" loading="lazy"></div><div class="txt"><h3>Parafusadeiras</h3><p>Parafusadeiras e chaves de impacto a bateria, bits e soquetes.</p></div></div>
     </div>
   </div>
 </section>
