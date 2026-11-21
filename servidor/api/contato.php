@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-function responder(int $codigo, array $dados): never
+function responder(int $codigo, array $dados): void
 {
     http_response_code($codigo);
     echo json_encode($dados, JSON_UNESCAPED_UNICODE);
