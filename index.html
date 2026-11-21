@@ -120,6 +120,9 @@
   input,textarea{width:100%;padding:13px 14px;border:1px solid var(--linha);border-radius:6px;font:inherit;background:#fff}
   input:focus,textarea:focus{outline:2px solid var(--laranja);border-color:transparent}
   textarea{min-height:120px;resize:vertical}
+  .lgpd{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--cinza);line-height:1.4}
+  .lgpd input{width:auto;margin-top:3px;accent-color:var(--laranja)}
+  form{position:relative}
 
 
   /* carrossel */
@@ -405,8 +408,11 @@
     <form onsubmit="enviar(event)">
       <h3>Peça seu orçamento</h3>
       <input id="nome" placeholder="Seu nome" required>
-      <input id="fone" placeholder="Telefone / WhatsApp" required>
+      <input id="fone" type="tel" placeholder="Telefone / WhatsApp" required>
+      <input id="email" type="email" placeholder="Seu e-mail (opcional)">
+      <input id="site" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <textarea id="msg" placeholder="Quais peças você precisa? (medida, material, quantidade)" required></textarea>
+      <label class="lgpd"><input type="checkbox" id="lgpd" required> Autorizo a CW Parafusos a guardar meus dados para responder meu pedido e entrar em contato, conforme a LGPD. Não compartilhamos seus dados com terceiros.</label>
       <button class="btn btn-lar" type="submit">Enviar pelo WhatsApp</button>
       <small style="color:var(--cinza)">Ao enviar, abriremos o WhatsApp com sua mensagem pronta.</small>
     </form>
@@ -428,9 +434,25 @@
   document.getElementById('ano').textContent = new Date().getFullYear();
   (function(){const a=new Date(2020,9,23),h=new Date();let n=h.getFullYear()-a.getFullYear();if(h<new Date(h.getFullYear(),9,23))n--;document.querySelectorAll('.anos').forEach(e=>e.textContent=n);})();
   const ZAP = '5519988620986'; // troque pelo número da CW Parafusos (55 + DDD + número)
+  // Endereço da API que grava os contatos no banco cwdb (Oracle Cloud).
+  // Deixe vazio ('') para o formulário funcionar só com o WhatsApp.
+  const API_CONTATO = 'https://api.cwparafusos.com.br/contato.php';
   function enviar(e){
     e.preventDefault();
     const t = `Olá, CW Parafusos! Meu nome é ${nome.value} (${fone.value}).\n\n${msg.value}`;
+    // 1) grava no banco em segundo plano (não atrapalha o WhatsApp se falhar)
+    if (API_CONTATO) {
+      try {
+        fetch(API_CONTATO, {
+          method: 'POST', mode: 'cors', keepalive: true,
+          headers: {'Content-Type': 'text/plain'},
+          body: JSON.stringify({nome: nome.value, telefone: fone.value, email: email.value,
+                                mensagem: msg.value, consentimento: lgpd.checked,
+                                site: document.getElementById('site').value, pagina: location.href})
+        }).catch(()=>{});
+      } catch (err) {}
+    }
+    // 2) abre o WhatsApp com a mensagem pronta
     window.open('https://wa.me/' + ZAP + '?text=' + encodeURIComponent(t), '_blank');
   }
 
